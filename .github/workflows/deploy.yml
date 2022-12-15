@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: Installin packages
-        run: npm ci
+      - name: Installing packages
+        run: npm i
 
       - name: Next build
         run: npm run build && npm run export && touch ./out/.nojekyll

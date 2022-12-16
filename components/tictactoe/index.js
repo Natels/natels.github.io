@@ -36,8 +36,8 @@ function Board() {
 			squares[0] == squares[3] && squares[3] == squares[6] && squares[6] != null ||
 			squares[1] == squares[4] && squares[4] == squares[7] && squares[7] != null ||
 			squares[2] == squares[5] && squares[5] == squares[8] && squares[8] != null ||
-			squares[0] == squares[5] && squares[5] == squares[8] && squares[8] != null ||
-			squares[2] == squares[5] && squares[5] == squares[7] && squares[7] != null 
+			squares[0] == squares[4] && squares[4] == squares[8] && squares[8] != null ||
+			squares[2] == squares[4] && squares[4] == squares[6] && squares[6] != null 
 		) {
 			setGameOver(true)
 			return true

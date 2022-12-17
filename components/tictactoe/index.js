@@ -4,22 +4,22 @@ import { useState } from 'react'
 function Square({ value, onClick }) {
 	return (
 		<button className="square" onClick={ onClick }>
-			{value}
+			{ value }
 		</button>
 	)
 }
 
 function Board() {
-	const [gameOver, setGameOver] = useState(false)
+	const [statusMessage, setStatusMessage] = useState(null)
 	const [isX, setIsX] = useState(true)
 	const [squares, setSquares] = useState(Array(9).fill(null))
 
 	function renderSquare(i) {
-		return <Square value={squares[i]} onClick={() => handleClick(i) } />;
+		return <Square value={ squares[i] } onClick={() => handleClick(i) } />;
 	}
 
 	function handleClick(i) {
-		if (!gameOver && squares[i] == null) {
+		if (statusMessage == null && squares[i] == null) {
 			squares[i] = isX ? "X" : "O"
 			setSquares(squares)
 			if (!checkForWinner()) {
@@ -39,38 +39,42 @@ function Board() {
 			squares[0] == squares[4] && squares[4] == squares[8] && squares[8] != null ||
 			squares[2] == squares[4] && squares[4] == squares[6] && squares[6] != null 
 		) {
-			setGameOver(true)
+			setStatusMessage(`${isX ? 'X' : 'O'}'s Win!!!`)
+			return true
+		}
+
+		if (!squares.some((val) => val === null)) {
+			setStatusMessage('Cats game')
 			return true
 		}
 		return false
 	}
 
 	function resetGame() {
-		setGameOver(false)
+		setStatusMessage(null)
 		setIsX(true)
 		setSquares(Array(9).fill(null))
 	}
 
-	const status = `${isX ? 'X' : 'O'}'s ${gameOver ? 'Win!!!' : 'Turn'}`
 return (
 		<div>
-			<div className="status">{status}</div>
+			<div className="status">{ statusMessage }</div>
 			<div className="board-row">
-				{renderSquare(0)}
-				{renderSquare(1)}
-				{renderSquare(2)}
+				{ renderSquare(0) }
+				{ renderSquare(1) }
+				{ renderSquare(2) }
 			</div>
 			<div className="board-row">
-				{renderSquare(3)}
-				{renderSquare(4)}
-				{renderSquare(5)}
+				{ renderSquare(3) }
+				{ renderSquare(4) }
+				{ renderSquare(5) }
 			</div>
 			<div className="board-row">
-				{renderSquare(6)}
-				{renderSquare(7)}
-				{renderSquare(8)}
+				{ renderSquare(6) }
+				{ renderSquare(7) }
+				{ renderSquare(8) }
 			</div>
-			{gameOver && <button onClick={ resetGame } >Reset</button>}
+			{statusMessage != null && <button onClick={ resetGame } >Reset</button>}
 		</div>
 	);
 }

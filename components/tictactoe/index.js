@@ -58,7 +58,6 @@ function Board() {
 
 return (
 		<div>
-			<div className="status">{ statusMessage }</div>
 			<div className="board-row">
 				{ renderSquare(0) }
 				{ renderSquare(1) }
@@ -74,6 +73,7 @@ return (
 				{ renderSquare(7) }
 				{ renderSquare(8) }
 			</div>
+			<div className="status">{ statusMessage }</div>
 			{statusMessage != null && <button onClick={ resetGame } >Reset</button>}
 		</div>
 	);

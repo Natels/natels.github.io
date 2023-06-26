@@ -1,11 +1,15 @@
 body {
-	font: 14px sans-serif;
-  max-width: 500px;
+	max-width: 500px;
 	margin: 0 auto !important;
-  float: none !important;
+	float: none !important;
 }
 
-ol, ul {
+main {
+	margin: 0 20px;
+}
+
+ol,
+ul {
 	padding-left: 30px;
 }
 
@@ -16,22 +20,23 @@ ol, ul {
 }
 
 .status {
-	margin-bottom: 10px;
+	margin: 10px 0;
+	font: 24px sans-serif;
 }
 
 .square {
 	background: #fff;
 	border: 1px solid #999;
 	float: left;
-	font-size: 70px;
+	font-size: 60px;
 	font-weight: bold;
-	line-height: 90px;
-	height: 90px;
+	line-height: 80px;
+	height: 80px;
 	margin-right: -1px;
 	margin-top: -1px;
 	padding: 0;
 	text-align: center;
-	width: 90px;
+	width: 80px;
 }
 
 .square:focus {
@@ -51,4 +56,3 @@ ol, ul {
 .game-info {
 	margin-left: 20px;
 }
-

@@ -1,7 +1,14 @@
+html {
+	background: rgb(208, 254, 129);
+	height: 100vh;
+}
+
 body {
+	background: #fffa;
 	font-size: 26px;
 	max-width: 500px;
-	margin: 0 auto !important;
+	margin: 0 auto 2rem !important;
+	padding-bottom: 2rem;
 	float: none !important;
 }
 
@@ -29,15 +36,15 @@ ul {
 	background: #fff;
 	border: 1px solid #999;
 	float: left;
-	font-size: 60px;
+	font-size: 50px;
 	font-weight: bold;
-	line-height: 80px;
-	height: 80px;
+	line-height: 60px;
+	height: 60px;
 	margin-right: -1px;
 	margin-top: -1px;
 	padding: 0;
 	text-align: center;
-	width: 80px;
+	width: 60px;
 }
 
 .square:focus {

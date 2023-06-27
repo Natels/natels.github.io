@@ -1,8 +1,8 @@
 import '../components/tictactoe/index.css'
-import { Nanum_Pen_Script } from "next/font/google"
+import { Slackside_One } from "next/font/google"
 
-const font = Nanum_Pen_Script({
-	subsets: ['latin'],
+const font = Slackside_One({
+	subsets: ['latin', 'latin-ext'],
 	weight: '400'
 })
 

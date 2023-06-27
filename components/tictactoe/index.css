@@ -1,15 +1,46 @@
+:root {
+	--shadow-color: 0deg 0% 0%;
+	--shadow-elevation-medium:
+		0px 0.3px 0.3px hsl(var(--shadow-color) / 0.36),
+		0px 1px 1.1px -0.8px hsl(var(--shadow-color) / 0.36),
+		0px 2.5px 2.8px -1.7px hsl(var(--shadow-color) / 0.36),
+		-0.1px 6.1px 6.9px -2.5px hsl(var(--shadow-color) / 0.36);
+	--shadow-elevation-high:
+		0px 0.3px 0.3px hsl(var(--shadow-color) / 0.34),
+		0px 1.8px 2px -0.4px hsl(var(--shadow-color) / 0.34),
+		0px 3.3px 3.7px -0.7px hsl(var(--shadow-color) / 0.34),
+		-0.1px 5.5px 6.2px -1.1px hsl(var(--shadow-color) / 0.34),
+		-0.1px 8.8px 9.9px -1.4px hsl(var(--shadow-color) / 0.34),
+		-0.2px 13.7px 15.4px -1.8px hsl(var(--shadow-color) / 0.34),
+		-0.2px 20.8px 23.4px -2.1px hsl(var(--shadow-color) / 0.34),
+		-0.3px 30.6px 34.4px -2.5px hsl(var(--shadow-color) / 0.34);
+}
+
 html {
-	background: rgb(208, 254, 129);
+	background-image: linear-gradient(45deg,
+			hsl(293deg 66% 69%) 0%,
+			hsl(319deg 87% 73%) 11%,
+			hsl(333deg 100% 76%) 22%,
+			hsl(346deg 100% 78%) 33%,
+			hsl(2deg 100% 81%) 44%,
+			hsl(16deg 100% 79%) 56%,
+			hsl(26deg 100% 79%) 67%,
+			hsl(33deg 100% 80%) 78%,
+			hsl(41deg 93% 82%) 89%,
+			hsl(55deg 73% 84%) 100%);
+	background-attachment: fixed;
+	width: 100vw;
 	height: 100vh;
 }
 
 body {
-	background: #fffa;
+	background: #fff5;
 	font-size: 26px;
 	max-width: 500px;
 	margin: 0 auto 2rem !important;
 	padding-bottom: 2rem;
 	float: none !important;
+	box-shadow: var(--shadow-elevation-medium);
 }
 
 main {

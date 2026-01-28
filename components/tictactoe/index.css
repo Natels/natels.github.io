@@ -1,56 +1,263 @@
+/* Pixel Art Portfolio Theme */
+/* Color Palette from Summer Arcade Image */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
-	--shadow-color: 0deg 0% 0%;
-	--shadow-elevation-medium:
-		0px 0.3px 0.3px hsl(var(--shadow-color) / 0.36),
-		0px 1px 1.1px -0.8px hsl(var(--shadow-color) / 0.36),
-		0px 2.5px 2.8px -1.7px hsl(var(--shadow-color) / 0.36),
-		-0.1px 6.1px 6.9px -2.5px hsl(var(--shadow-color) / 0.36);
-	--shadow-elevation-high:
-		0px 0.3px 0.3px hsl(var(--shadow-color) / 0.34),
-		0px 1.8px 2px -0.4px hsl(var(--shadow-color) / 0.34),
-		0px 3.3px 3.7px -0.7px hsl(var(--shadow-color) / 0.34),
-		-0.1px 5.5px 6.2px -1.1px hsl(var(--shadow-color) / 0.34),
-		-0.1px 8.8px 9.9px -1.4px hsl(var(--shadow-color) / 0.34),
-		-0.2px 13.7px 15.4px -1.8px hsl(var(--shadow-color) / 0.34),
-		-0.2px 20.8px 23.4px -2.1px hsl(var(--shadow-color) / 0.34),
-		-0.3px 30.6px 34.4px -2.5px hsl(var(--shadow-color) / 0.34);
+	--coral: #FFD6C4;
+	--coral-light: #FFE8DC;
+	--sky-blue: #A8D8EA;
+	--sky-blue-light: #C5E8F2;
+	--magenta: #C850C0;
+	--magenta-dark: #9A3D94;
+	--lime-green: #7CB342;
+	--lime-green-dark: #5A8A2A;
+	--yellow: #FFD54F;
+	--yellow-dark: #E6B800;
+	--pink: #FF8A9A;
+	--pink-dark: #E66A7A;
+	--white: #FFFFFF;
+	--dark: #2D1B3D;
+	--pixel-border: 4px;
+}
+
+/* Pixel art border mixin using box-shadow */
+/* Creates a chunky pixel border effect */
+
+@font-face {
+	font-family: 'PixelFont';
+	src: local('Press Start 2P');
+}
+
+* {
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
 }
 
 html {
-	background-image: linear-gradient(45deg,
-			hsl(293deg 66% 69%) 0%,
-			hsl(319deg 87% 73%) 11%,
-			hsl(333deg 100% 76%) 22%,
-			hsl(346deg 100% 78%) 33%,
-			hsl(2deg 100% 81%) 44%,
-			hsl(16deg 100% 79%) 56%,
-			hsl(26deg 100% 79%) 67%,
-			hsl(33deg 100% 80%) 78%,
-			hsl(41deg 93% 82%) 89%,
-			hsl(55deg 73% 84%) 100%);
+	/* Gradient background inspired by the summer arcade image */
+	background: linear-gradient(
+		180deg,
+		var(--sky-blue-light) 0%,
+		var(--sky-blue) 30%,
+		var(--coral-light) 70%,
+		var(--coral) 100%
+	);
 	background-attachment: fixed;
-	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
+	width: 100%;
+}
+
+/* Pixel pattern overlay */
+html::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image:
+		linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+		linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+		linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%);
+	background-size: 8px 8px;
+	pointer-events: none;
+	z-index: 0;
 }
 
 body {
-	background: #fff5;
-	font-size: 26px;
-	max-width: 500px;
-	margin: 0 auto 2rem !important;
-	padding-bottom: 2rem;
+	position: relative;
+	z-index: 1;
+	background: var(--white);
+	font-family: 'Press Start 2P', cursive;
+	font-size: 12px;
+	max-width: 600px;
+	margin: 2rem auto !important;
+	padding: 0;
 	float: none !important;
-	box-shadow: var(--shadow-elevation-medium);
+	/* Pixel art border effect */
+	border: var(--pixel-border) solid var(--dark);
+	box-shadow:
+		/* Outer glow */
+		0 0 0 var(--pixel-border) var(--magenta),
+		8px 8px 0 0 var(--dark);
+}
+
+/* Header decoration */
+body::before {
+	content: '';
+	display: block;
+	height: 40px;
+	background: linear-gradient(90deg,
+		var(--magenta) 0%,
+		var(--pink) 25%,
+		var(--yellow) 50%,
+		var(--lime-green) 75%,
+		var(--sky-blue) 100%
+	);
+	border-bottom: var(--pixel-border) solid var(--dark);
+}
+
+/* Title bar dots */
+body::after {
+	content: '';
+	position: absolute;
+	top: 12px;
+	left: 16px;
+	width: 12px;
+	height: 12px;
+	background: var(--pink);
+	border: 2px solid var(--dark);
+	box-shadow:
+		20px 0 0 var(--yellow),
+		20px 0 0 0 var(--dark),
+		40px 0 0 var(--lime-green),
+		40px 0 0 0 var(--dark);
 }
 
 main {
-	margin: 0 20px;
+	margin: 0;
+	padding: 24px 28px;
+	line-height: 1.8;
 }
 
-ol,
-ul {
-	padding-left: 30px;
+/* Headings with pixel style */
+h1, h2, h3, h4, h5, h6 {
+	color: var(--magenta-dark);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 1.5em;
+	margin-bottom: 0.75em;
+	position: relative;
 }
+
+h1 {
+	font-size: 1.5rem;
+	text-align: center;
+	padding-bottom: 16px;
+	margin-top: 0;
+}
+
+h1::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 4px;
+	background: repeating-linear-gradient(
+		90deg,
+		var(--magenta) 0px,
+		var(--magenta) 8px,
+		var(--yellow) 8px,
+		var(--yellow) 16px,
+		var(--lime-green) 16px,
+		var(--lime-green) 24px,
+		var(--sky-blue) 24px,
+		var(--sky-blue) 32px
+	);
+}
+
+h2 {
+	font-size: 1.1rem;
+	color: var(--lime-green-dark);
+}
+
+/* Paragraphs */
+p {
+	color: var(--dark);
+	margin-bottom: 1em;
+}
+
+/* Links - pixel button style */
+a {
+	color: var(--magenta);
+	text-decoration: none;
+	background: var(--coral-light);
+	padding: 2px 8px;
+	border: 2px solid var(--dark);
+	box-shadow:
+		2px 2px 0 var(--dark);
+	transition: all 0.1s ease;
+	display: inline-block;
+}
+
+a:hover {
+	background: var(--yellow);
+	transform: translate(2px, 2px);
+	box-shadow: none;
+}
+
+a:active {
+	background: var(--lime-green);
+}
+
+/* Lists */
+ol, ul {
+	padding-left: 28px;
+	color: var(--dark);
+}
+
+li {
+	margin-bottom: 0.5em;
+	position: relative;
+}
+
+ul li::marker {
+	color: var(--magenta);
+	content: '► ';
+}
+
+/* Code blocks with pixel style */
+code {
+	font-family: 'Courier New', monospace;
+	background: var(--dark);
+	color: var(--lime-green);
+	padding: 2px 6px;
+	border: 2px solid var(--dark);
+}
+
+pre {
+	background: var(--dark);
+	color: var(--lime-green);
+	padding: 16px;
+	border: 4px solid var(--magenta);
+	box-shadow: 4px 4px 0 var(--magenta-dark);
+	overflow-x: auto;
+}
+
+/* Pixel art buttons */
+button, .pixel-btn {
+	font-family: inherit;
+	font-size: 14px;
+	background: var(--yellow);
+	color: var(--dark);
+	border: var(--pixel-border) solid var(--dark);
+	padding: 8px 16px;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	box-shadow:
+		4px 4px 0 var(--dark);
+	transition: all 0.1s ease;
+}
+
+button:hover, .pixel-btn:hover {
+	background: var(--lime-green);
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 var(--dark);
+}
+
+button:active, .pixel-btn:active {
+	transform: translate(4px, 4px);
+	box-shadow: none;
+}
+
+/* ============================================ */
+/* Tic-Tac-Toe Game - Pixel Art Style */
+/* ============================================ */
 
 .board-row:after {
 	clear: both;
@@ -59,39 +266,254 @@ ul {
 }
 
 .status {
-	margin: 10px 0;
-	font: 24px sans-serif;
+	margin: 16px 0;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--magenta-dark);
+	text-align: center;
+	padding: 8px;
+	background: var(--coral-light);
+	border: 2px solid var(--dark);
 }
 
 .square {
-	background: #fff;
-	border: 1px solid #999;
+	background: var(--white);
+	border: var(--pixel-border) solid var(--dark);
 	float: left;
-	font-size: 50px;
+	font-size: 32px;
 	font-weight: bold;
-	line-height: 60px;
-	height: 60px;
-	margin-right: -1px;
-	margin-top: -1px;
+	line-height: 56px;
+	height: 56px;
+	width: 56px;
+	margin: -2px;
 	padding: 0;
 	text-align: center;
-	width: 60px;
+	cursor: pointer;
+	color: var(--magenta);
+	transition: all 0.1s ease;
+}
+
+.square:nth-child(odd) {
+	background: var(--coral-light);
+}
+
+.square:hover {
+	background: var(--yellow);
+	transform: scale(1.05);
+	z-index: 1;
+	position: relative;
 }
 
 .square:focus {
-	outline: none;
+	outline: 3px solid var(--lime-green);
+	outline-offset: -3px;
 }
 
 .kbd-navigation .square:focus {
-	background: #ddd;
+	background: var(--sky-blue);
 }
 
 .game {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px;
+	background: var(--sky-blue-light);
+	border: var(--pixel-border) solid var(--dark);
+	margin: 16px 0;
+	box-shadow: 4px 4px 0 var(--dark);
+}
+
+.game-board {
+	margin-bottom: 16px;
 }
 
 .game-info {
-	margin-left: 20px;
+	margin: 0;
+	text-align: center;
+}
+
+.game-info button {
+	margin-top: 12px;
+}
+
+/* Decorative pixel elements */
+.pixel-decoration {
+	position: relative;
+}
+
+.pixel-decoration::before,
+.pixel-decoration::after {
+	content: '✦';
+	color: var(--yellow);
+	position: absolute;
+	font-size: 24px;
+}
+
+.pixel-decoration::before {
+	left: -30px;
+}
+
+.pixel-decoration::after {
+	right: -30px;
+}
+
+/* Pixel art separator */
+hr {
+	border: none;
+	height: 4px;
+	background: repeating-linear-gradient(
+		90deg,
+		var(--magenta) 0px,
+		var(--magenta) 8px,
+		transparent 8px,
+		transparent 16px
+	);
+	margin: 24px 0;
+}
+
+/* Selection colors */
+::selection {
+	background: var(--magenta);
+	color: var(--white);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--coral-light);
+	border: 2px solid var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--magenta);
+	border: 2px solid var(--dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--pink);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+	body {
+		margin: 1rem !important;
+		border-width: 3px;
+	}
+
+	body::before {
+		height: 32px;
+	}
+
+	body::after {
+		top: 10px;
+		left: 12px;
+		width: 10px;
+		height: 10px;
+	}
+
+	main {
+		padding: 16px 20px;
+	}
+
+	h1 {
+		font-size: 1.2rem;
+	}
+
+	.square {
+		width: 48px;
+		height: 48px;
+		line-height: 48px;
+		font-size: 28px;
+	}
+}
+
+/* Animation for interactive elements */
+@keyframes pixel-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.7; }
+}
+
+.pixel-animate {
+	animation: pixel-pulse 1s infinite;
+}
+
+/* ============================================ */
+/* Navigation - Pixel Art Style */
+/* ============================================ */
+
+.pixel-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: center;
+	padding: 16px;
+	margin-bottom: 16px;
+	background: var(--sky-blue-light);
+	border-bottom: var(--pixel-border) solid var(--dark);
+}
+
+.pixel-nav a {
+	font-size: 10px;
+	padding: 8px 12px;
+	background: var(--yellow);
+	border: 3px solid var(--dark);
+	box-shadow: 3px 3px 0 var(--dark);
+}
+
+.pixel-nav a:hover {
+	background: var(--lime-green);
+	transform: translate(3px, 3px);
+	box-shadow: none;
+}
+
+/* ============================================ */
+/* Pixel Art Decorations */
+/* ============================================ */
+
+.pixel-sprite {
+	display: inline-block;
+	font-size: 32px;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+.pixel-card {
+	background: var(--white);
+	border: var(--pixel-border) solid var(--dark);
+	box-shadow: 4px 4px 0 var(--dark);
+	padding: 16px;
+	margin: 16px 0;
+}
+
+.pixel-card:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0 var(--dark);
+}
+
+/* Stats/badges */
+.pixel-badge {
+	display: inline-block;
+	background: var(--magenta);
+	color: var(--white);
+	font-size: 10px;
+	padding: 4px 8px;
+	border: 2px solid var(--dark);
+	text-transform: uppercase;
+}
+
+/* Blinking cursor effect */
+.pixel-cursor::after {
+	content: '_';
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0; }
 }
